@@ -67,7 +67,7 @@ app.initializers.add('nodeloc-split-view', () => {
 		this.composerPositionInterval = setInterval(function () {
 			const $editorContainer = $(".TextEditor-editorContainer");
 			let $composer = this.$('.ComposerPage');
-			if (app.composer.position !== "normal") {
+			if (app.composer.position === "minimized") {
 				if (app.current?.data?.routeName !== "composer") {
 					$composer.css("padding-bottom", '');
 					$editorContainer.css("padding-bottom", '');
@@ -133,7 +133,6 @@ app.initializers.add('nodeloc-split-view', () => {
 	});
 
 	extend(ComposerBody.prototype, 'onremove', function () {
-		//该定时器应当被正确移除
 		this.composerPreviewInterval && clearInterval(this.composerPreviewInterval);
 		clearInterval(this.composerPositionInterval);
 	})
